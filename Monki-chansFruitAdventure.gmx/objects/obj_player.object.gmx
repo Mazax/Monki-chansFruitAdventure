@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>playerSpeed = 4;
 playerFacing = 1;
+playerjumpSpeed = 5;
 
 </string>
           </argument>
@@ -50,11 +51,11 @@ playerFacing = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (keyboard_check(vk_right)){
+            <string>if (keyboard_check(vk_right)&amp;&amp; place_free(x+playerSpeed,y)){
     playerFacing = 1;
     x += playerSpeed;   
 }
-if (keyboard_check(vk_left)){
+if (keyboard_check(vk_left) &amp;&amp; place_free(x-playerSpeed,y)){
     playerFacing = 0;
     x -= playerSpeed;   
 }
