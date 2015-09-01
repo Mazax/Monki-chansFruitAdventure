@@ -27,7 +27,9 @@
             <kind>1</kind>
             <string>playerSpeed = 4;
 playerFacing = 1;
-playerjumpSpeed = 5;
+playerJumpSpeed = 5;
+playerGravity = 0.5;
+playerYVelocity = 0;
 
 </string>
           </argument>
@@ -51,7 +53,40 @@ playerjumpSpeed = 5;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (keyboard_check(vk_right)&amp;&amp; place_free(x+playerSpeed,y)){
+            <string>/////////////
+///Physics///
+/////////////
+if ((playerYVelocity + playerGravity) &lt; 16){
+        playerYVelocity += playerGravity
+}
+else{
+        playerYVelocity = 16;
+}
+
+if(place_free(x,y+playerYVelocity)){
+   
+    y += playerYVelocity
+}
+else if (place_free(x, y+1)){
+    do {
+        
+        y += 1;
+    
+    }
+    until (!place_free(x,y+1))
+     playerYVelocity = 0;
+}
+else {
+    playerYVelocity = 0;
+}
+
+
+
+
+/////////////////////
+///Player Movement///
+/////////////////////
+if (keyboard_check(vk_right)&amp;&amp; place_free(x+playerSpeed,y)){
     playerFacing = 1;
     x += playerSpeed;   
 }
@@ -59,7 +94,15 @@ if (keyboard_check(vk_left) &amp;&amp; place_free(x-playerSpeed,y)){
     playerFacing = 0;
     x -= playerSpeed;   
 }
+if (keyboard_check(vk_up) &amp;&amp; place_free(x, y-playerJumpSpeed)){
+    
+    playerYVelocity = -playerJumpSpeed;
+}
+if (keyboard_check(vk_escape) ){
+    game_end();
+}
 
+//&amp;&amp; place_free(x, y-playerJumpSpeed)
 </string>
           </argument>
         </arguments>
