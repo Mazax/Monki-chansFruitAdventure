@@ -27,9 +27,10 @@
             <kind>1</kind>
             <string>playerSpeed = 4;
 playerFacing = 1;
-playerJumpSpeed = 5;
-playerGravity = 0.5;
+playerJumpSpeed = 10;
+playerGravity = 0.1;
 playerYVelocity = 0;
+playerCanJump = true;
 
 </string>
           </argument>
@@ -76,8 +77,12 @@ else if (place_free(x, y+1)){
     until (!place_free(x,y+1))
      playerYVelocity = 0;
 }
+else if (!place_free(x, y-playerYVelocity)){
+    playerYVelocity = 0;
+}
 else {
     playerYVelocity = 0;
+    playerCanJump = true;
 }
 
 
@@ -94,10 +99,11 @@ if (keyboard_check(vk_left) &amp;&amp; place_free(x-playerSpeed,y)){
     playerFacing = 0;
     x -= playerSpeed;   
 }
-if (keyboard_check(vk_up) &amp;&amp; place_free(x, y-playerJumpSpeed)){
-    
+if (keyboard_check(vk_up) &amp;&amp; (place_free(x, y-playerJumpSpeed) &amp;&amp; playerCanJump)){
+    playerCanJump = false;
     playerYVelocity = -playerJumpSpeed;
 }
+
 if (keyboard_check(vk_escape) ){
     game_end();
 }
