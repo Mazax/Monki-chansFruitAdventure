@@ -7,14 +7,17 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_player</sprite>
+    <sprite>sprites\spr_fruit</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\obj_player</object>
+    <object>objects\obj_fruit</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\level1</room>
+    <room>rooms\level2</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
