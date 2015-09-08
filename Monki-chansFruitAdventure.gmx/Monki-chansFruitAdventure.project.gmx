@@ -8,15 +8,21 @@
   <sprites name="sprites">
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\spr_block</sprite>
+    <sprite>sprites\spr_fruit</sprite>
+    <sprite>sprites\spr_enemy</sprite>
+    <sprite>sprites\sprite4</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\obj_player</object>
     <object>objects\obj_block</object>
+    <object>objects\obj_fruit</object>
+    <object>objects\obj_enemy</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\level1</room>
+    <room>rooms\room1</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
