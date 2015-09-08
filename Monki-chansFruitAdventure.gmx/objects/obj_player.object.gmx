@@ -28,7 +28,7 @@
             <string>playerSpeed = 4;
 playerFacing = 1;
 playerJumpSpeed = 10;
-playerGravity = 0.1;
+playerGravity = 0.4; // 0.4 = 3,5 blocks
 playerYVelocity = 0;
 playerCanJump = true;
 
@@ -57,29 +57,31 @@ playerCanJump = true;
             <string>/////////////
 ///Physics///
 /////////////
-if ((playerYVelocity + playerGravity) &lt; 16){
-        playerYVelocity += playerGravity
-}
-else{
+//check if velocity is too big
+playerYVelocity += playerGravity;
+if (playerYVelocity &gt; 16){
         playerYVelocity = 16;
 }
-
+//move player to new point
 if(place_free(x,y+playerYVelocity)){
    
     y += playerYVelocity
 }
-else if (place_free(x, y+1)){
+//if place not free, move closer until hugging the wall
+else if (place_free(x, y+sign(playerYVelocity))){
     do {
         
-        y += 1;
+        y += sign(playerYVelocity);
     
     }
-    until (!place_free(x,y+1))
+    until (!place_free(x,y+sign(playerYVelocity)))
      playerYVelocity = 0;
 }
+//if going against a wall, stop
 else if (!place_free(x, y-playerYVelocity)){
     playerYVelocity = 0;
 }
+//on the groud -&gt; can jump
 else {
     playerYVelocity = 0;
     playerCanJump = true;
